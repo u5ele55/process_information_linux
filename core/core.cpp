@@ -28,7 +28,7 @@ void Core::start()
     std::string pid = input[0];
 
     if (!StringProcessing::isNumeric(pid)) {
-        std::cout << "PID must be a number!\n";
+        std::cout << "You can use help keyword to print manual page\n";
         return;
     }
 
@@ -38,6 +38,15 @@ void Core::start()
         return;
     }
 
+    /*
+        InfoObject information(pid); // functor
+            - operator()(string keyword):
+            -   "ppid": [&](){return new PPIDGetter(pid);},
+            -   "tty": [&](){return new TTYGetter(pid);},
+        for(keyword : input) 
+            info = information(keyword);
+            std::cout << keyword << ": " << info << '\n';  
+    */  
 
     PPIDGetter ppidg(pid);
     std::cout << ppidg.get() << '\n';
@@ -45,5 +54,5 @@ void Core::start()
 
 void Core::printHelp()
 {
-    std::cout << "HELP PAGE FOR pInfo utility.";
+    std::cout << "HELP PAGE FOR pInfo utility.\n";
 }
