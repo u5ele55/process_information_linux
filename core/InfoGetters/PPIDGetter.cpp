@@ -2,7 +2,7 @@
 #include <iostream>
 PPIDGetter::PPIDGetter(std::string pid) : AbstractInfoGetter(pid) {}
 
-std::string PPIDGetter::get()
+std::vector<std::string> PPIDGetter::get()
 {
     ProcFileReader file(pid, "status");
 
@@ -10,5 +10,5 @@ std::string PPIDGetter::get()
     auto ppidLine = StringProcessing::filter(lines, "PPid");
     auto ppid = StringProcessing::split(ppidLine[0], "\t");
 
-    return ppid[1];
+    return {ppid[1]};
 }

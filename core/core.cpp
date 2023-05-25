@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "InfoGetters/PPIDGetter.h"
+#include "GetterMaster.h"
 #include "utilities/StringProcessing.h"
 #include "utilities/DirectoryChecker.h"
 
@@ -38,18 +38,40 @@ void Core::start()
         return;
     }
 
-    /*
-        InfoObject information(pid); // functor
-            - operator()(string keyword):
-            -   "ppid": [&](){return new PPIDGetter(pid);},
-            -   "tty": [&](){return new TTYGetter(pid);},
-        for(keyword : input) 
-            info = information(keyword);
-            std::cout << keyword << ": " << info << '\n';  
-    */  
+    GetterMaster info(pid);
+    AbstractInfoGetter *getter;
 
-    PPIDGetter ppidg(pid);
-    std::cout << ppidg.get() << '\n';
+    for (int i = 1; i < inputSize; i ++) {
+        const std::string &keyword = input[i];
+        std::vector<std::string> lines;
+        bool getterCreated = false;
+
+        try {
+            getter = info(keyword);
+            try {
+                lines = getter->get();
+            } catch (...) {
+                lines.push_back("<Something went wrong>");
+            }
+        } catch (const std::invalid_argument &err) {
+            lines.push_back(err.what());
+        }
+
+
+        if (lines.size() == 0) {
+            std::cout << keyword << ": <Could't get info>" << "\n";
+        }
+        else if (lines.size() == 1) {
+            std::cout << keyword << ": " << lines[0] << "\n";
+        } 
+        else {
+            std::cout << keyword << ":\n";
+            for (const auto &line : lines) {
+                std::cout << '\t' << line << '\n';
+            }
+        }
+        delete getter;
+    }
 }
 
 void Core::printHelp()

@@ -5,12 +5,16 @@ EXECUTABLE = pinfo
 
 SOURCES = main.cpp \
 		  core/core.cpp \
+		  core/GetterMaster.cpp \
 		  core/utilities/FileReader.cpp \
 		  core/utilities/ProcFileReader.cpp \
 		  core/utilities/StringProcessing.cpp \
-		  core/InfoGetters/AbstractInfoGetter.cpp \
+		  core/utilities/DirectoryChecker.cpp \
 		  core/InfoGetters/PPIDGetter.cpp \
-		  core/utilities/DirectoryChecker.cpp
+		  core/InfoGetters/AbstractInfoGetter.cpp \
+		  core/InfoGetters/NameGetter.cpp \
+		  core/InfoGetters/StateGetter.cpp \
+		  core/InfoGetters/UIDGetter.cpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 

@@ -2,8 +2,8 @@
 
 #include "AbstractInfoGetter.h"
 
-class PPIDGetter : public AbstractInfoGetter {
+class UIDGetter : public AbstractInfoGetter {
 public:
-    PPIDGetter(std::string pid);
+    UIDGetter(std::string pid);
     std::vector<std::string> get() override;
 };
