@@ -1,0 +1,15 @@
+MANUAL PAGE for pInfo.
+Made by Shaganov Vyacheslav.
+
+Usage:
+    ./pInfo [pid] [keywords]...
+
+Keywords:
+    name - Name of the process
+    ppid - Parent's PID
+    state - Current state
+    uid - UID of user who runs the process
+    threads - number of threads
+    thpid - list of PIDs of the process threads
+
+

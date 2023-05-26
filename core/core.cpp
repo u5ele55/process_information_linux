@@ -5,6 +5,7 @@
 #include "GetterMaster.h"
 #include "utilities/StringProcessing.h"
 #include "utilities/DirectoryChecker.h"
+#include "utilities/FileReader.h"
 
 Core::Core(int argc, char *argv[])
     : inputSize(argc-1)
@@ -17,7 +18,7 @@ Core::Core(int argc, char *argv[])
 void Core::start()
 {
     if (inputSize == 0) {
-        std::cout << "You must provide PID of process!\n";
+        std::cout << "Try './pinfo help' for more information.\n";
         return;
     }
     if (input[0] == "help") {
@@ -28,8 +29,12 @@ void Core::start()
     std::string pid = input[0];
 
     if (!StringProcessing::isNumeric(pid)) {
-        std::cout << "You can use help keyword to print manual page\n";
+        std::cout << "Try './pinfo help' for more information.\n";
         return;
+    }
+
+    if (input.size() == 1) {
+        input = {pid, "name", "state", "uid"};
     }
 
     auto dirState = DirectoryChecker::checkDirectory("/proc/" + pid);
@@ -76,5 +81,9 @@ void Core::start()
 
 void Core::printHelp()
 {
-    std::cout << "HELP PAGE FOR pInfo utility.\n";
+    FileReader reader("core/manual");
+
+    for (const auto &line : reader.content()) {
+        std::cout << line << '\n';
+    }
 }
