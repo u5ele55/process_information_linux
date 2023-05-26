@@ -61,6 +61,7 @@ void Core::start()
             }
         } catch (const std::invalid_argument &err) {
             lines.push_back(err.what());
+            getterCreated = false;
         }
 
 
@@ -76,7 +77,9 @@ void Core::start()
                 std::cout << '\t' << line << '\n';
             }
         }
-        delete getter;
+        if (getterCreated) {
+            delete getter;
+        }
     }
 }
 
