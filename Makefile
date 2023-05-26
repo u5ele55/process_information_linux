@@ -16,7 +16,9 @@ SOURCES = main.cpp \
 		  core/InfoGetters/StateGetter.cpp \
 		  core/InfoGetters/UIDGetter.cpp \
 		  core/InfoGetters/ThreadsGetter.cpp \
-		  core/InfoGetters/ThreadsPIDGetter.cpp
+		  core/InfoGetters/ThreadsPIDGetter.cpp \
+		  core/InfoGetters/PriorityGetter.cpp \
+		  core/InfoGetters/PolicyGetter.cpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 

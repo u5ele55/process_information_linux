@@ -11,5 +11,6 @@ Keywords:
     uid - UID of user who runs the process
     threads - number of threads
     thpid - list of PIDs of the process threads
-
-
+    prt - Priority of the process
+    policy - Planning policy
+    

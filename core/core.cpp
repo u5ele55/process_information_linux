@@ -35,6 +35,7 @@ void Core::start()
 
     if (input.size() == 1) {
         input = {pid, "name", "state", "uid"};
+        inputSize = input.size();
     }
 
     auto dirState = DirectoryChecker::checkDirectory("/proc/" + pid);
@@ -44,12 +45,12 @@ void Core::start()
     }
 
     GetterMaster info(pid);
-    AbstractInfoGetter *getter;
+    AbstractInfoGetter *getter = nullptr;
 
     for (int i = 1; i < inputSize; i ++) {
         const std::string &keyword = input[i];
         std::vector<std::string> lines;
-        bool getterCreated = false;
+        bool getterCreated = true;
 
         try {
             getter = info(keyword);

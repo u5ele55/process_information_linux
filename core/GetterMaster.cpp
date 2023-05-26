@@ -10,6 +10,8 @@
 #include "InfoGetters/UIDGetter.h"
 #include "InfoGetters/ThreadsGetter.h"
 #include "InfoGetters/ThreadsPIDGetter.h"
+#include "InfoGetters/PriorityGetter.h"
+#include "InfoGetters/PolicyGetter.h"
 
 GetterMaster::GetterMaster(const std::string &pid) : pid(pid) {}
 
@@ -22,6 +24,8 @@ AbstractInfoGetter *GetterMaster::operator()(const std::string &getterName)
         {"uid", [&](){ return new UIDGetter(pid); }},
         {"threads", [&](){ return new ThreadsGetter(pid); }},
         {"thpid", [&](){ return new ThreadsPIDGetter(pid); }},
+        {"prt", [&](){ return new PriorityGetter(pid); }},
+        {"policy", [&](){ return new PolicyGetter(pid); }},
     };
 
     if (base.count(getterName) == 0) {
