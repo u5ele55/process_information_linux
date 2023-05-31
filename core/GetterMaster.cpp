@@ -14,6 +14,7 @@
 #include "InfoGetters/PolicyGetter.h"
 #include "InfoGetters/IsSystemGetter.h"
 #include "InfoGetters/DaemonGetter.h"
+#include "InfoGetters/FlagsGetter.h"
 
 GetterMaster::GetterMaster(const std::string &pid) : pid(pid) {}
 
@@ -29,7 +30,9 @@ AbstractInfoGetter *GetterMaster::operator()(const std::string &getterName)
         {"prt", [&](){ return new PriorityGetter(pid); }},
         {"policy", [&](){ return new PolicyGetter(pid); }},
         {"sys", [&](){ return new IsSystemGetter(pid); }},
-        {"dm", [&](){ return new DaemonGetter(pid); }}
+        {"dm", [&](){ return new DaemonGetter(pid); }},
+        {"flags", [&](){ return new FlagsGetter(pid); }},
+        
     };
 
     if (base.count(getterName) == 0) {

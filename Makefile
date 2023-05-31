@@ -20,7 +20,8 @@ SOURCES = main.cpp \
 		  core/InfoGetters/PriorityGetter.cpp \
 		  core/InfoGetters/PolicyGetter.cpp \
 		  core/InfoGetters/IsSystemGetter.cpp \
-		  core/InfoGetters/DaemonGetter.cpp
+		  core/InfoGetters/DaemonGetter.cpp \
+		  core/InfoGetters/FlagsGetter.cpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
