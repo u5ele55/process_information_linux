@@ -22,6 +22,9 @@ Keywords:
     thpid - list of PIDs of the process threads
     prt - Priority of the process
     policy - Planning policy
+    dm - Whether process is daemon
+    sys - Whether process is system
+    flags - Flags of a process
 ```
 ```
 $ ./pinfo 4860 dm sys name ppid uid state threads thpid policy prt 
