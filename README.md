@@ -24,7 +24,9 @@ Keywords:
     policy - Planning policy
 ```
 ```
-$ ./pinfo 4860 name ppid uid state threads thpid policy prt
+$ ./pinfo 4860 dm sys name ppid uid state threads thpid policy prt 
+dm: Not a daemon
+sys: Not a kernel process
 name: cpptools-srv
 ppid: 1210
 uid: 1000
@@ -45,4 +47,23 @@ thpid:
 	4882
 policy: SCHED_OTHER
 prt: 20
+```
+```
+$ ./pinfo 4 name ppid flags
+name: rcu_par_gp
+ppid: 2
+flags:
+	I'm a workqueue worker
+	Forked but didn't exec
+	This thread should not be frozen
+	I am a kernel thread
+	Userland is not allowed to meddle with cpus_mask
+
+$ ./pinfo 460 name ppid flags
+name: systemd-udevd
+ppid: 1
+flags:
+	Used super-user privileges
+	Randomize virtual address space
+
 ```

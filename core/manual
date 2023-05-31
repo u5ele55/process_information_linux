@@ -15,3 +15,4 @@ Keywords:
     policy - Planning policy
     dm - Whether process is daemon
     sys - Whether process is system
+    flags - Flags of a process
