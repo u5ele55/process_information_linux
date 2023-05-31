@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include "../utilities/FileReader.h"
 #include "../utilities/ProcFileReader.h"
 #include "../utilities/StringProcessing.h"
 

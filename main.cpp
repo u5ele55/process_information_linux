@@ -7,3 +7,12 @@ int main(int argc, char* argv[]) {
 
     return 0;
 }
+
+/* 
+/proc/<pid>/cmdline - empty for kernel processes
+
+daemon:
+/proc/<pid>>/fd/0 link is tty (readlink())
+most likely process with no tty is a daemon.
+
+*/ 
